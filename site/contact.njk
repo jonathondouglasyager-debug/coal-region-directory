@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+pageTitle: "Contact Us"
+description: "Need help finding a funeral home, cemetery, or cremation service in Schuylkill County? We'll connect you with the right provider."
+---
+
+<div class="container">
+  {% set breadcrumbs = [{label: "Contact"}] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <h1>Contact Us</h1>
+  {% include "components/contact-form.njk" %}
+</div>
+
+<script src="/js/form.js" defer></script>

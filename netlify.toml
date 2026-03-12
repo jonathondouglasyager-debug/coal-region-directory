@@ -1,0 +1,8 @@
+[build]
+  command = "npx eleventy"
+  publish = "_site"
+
+[[redirects]]
+  from = "/*"
+  to = "/404/index.html"
+  status = 404

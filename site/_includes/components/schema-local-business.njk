@@ -1,0 +1,31 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ item.schemaType }}",
+  "name": "{{ item.name | json_escape }}",
+  {% if item.address %}"address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ item.address | json_escape }}",
+    "addressLocality": "{{ item.city | json_escape }}",
+    "addressRegion": "PA",
+    "postalCode": "{{ item.zip }}",
+    "addressCountry": "US"
+  },{% endif %}
+  {% if item.phone %}"telephone": "{{ item.phone }}",{% endif %}
+  {% if item.website %}"url": "{{ item.website }}",{% endif %}
+  {% if item.google_rating %}"aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ item.google_rating }}",
+    "reviewCount": "{{ item.google_review_count }}"
+  },{% endif %}
+  {% if item.lat %}"geo": {
+    "@type": "GeoCoordinates",
+    "latitude": {{ item.lat }},
+    "longitude": {{ item.lng }}
+  },{% endif %}
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Schuylkill County, Pennsylvania"
+  }
+}
+</script>

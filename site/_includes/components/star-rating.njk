@@ -1,0 +1,7 @@
+<span class="stars" aria-label="{{ item.google_rating }} out of 5 stars">
+  <span class="stars-display">
+    <span class="stars-empty" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="stars-filled" style="width: {{ item.google_rating | stars_width }}%" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+  </span>
+  <span class="stars-count">{{ item.google_rating }}{% if item.google_review_count %} ({{ item.google_review_count }}){% endif %}</span>
+</span>

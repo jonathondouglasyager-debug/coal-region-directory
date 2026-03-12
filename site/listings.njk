@@ -1,0 +1,11 @@
+---
+pagination:
+  data: businesses.all
+  size: 1
+  alias: listing
+permalink: "{{ listing.categorySlug }}/{{ listing.slug }}/"
+layout: layouts/listing.njk
+eleventyComputed:
+  pageTitle: "{{ listing.name }} - {{ listing.city }}, PA"
+  description: "{{ listing.name }} in {{ listing.city }}, PA. Phone, address, directions, and services. Schuylkill County {{ listing.categoryLabel }}."
+---

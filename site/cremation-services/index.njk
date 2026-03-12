@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+pageTitle: "Cremation Services in Schuylkill County, PA"
+description: "Find cremation services and crematories in Schuylkill County, Pennsylvania. Local providers serving Coal Region families."
+---
+
+<div class="container">
+  {% set breadcrumbs = [{label: "Cremation Services"}] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <h1>Cremation Services in Schuylkill County</h1>
+  <p class="page-intro">
+    Local cremation providers serving Schuylkill County families with care and dignity.
+  </p>
+
+  {% set items = businesses.byCategory["cremation-services"].items %}
+  {% for group in items | by_city %}
+    <div class="city-section">
+      <h2>{{ group.city }}</h2>
+      <div class="card-grid">
+        {% for item in group.items %}
+          {% include "components/listing-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

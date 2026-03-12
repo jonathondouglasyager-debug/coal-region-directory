@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+pageTitle: "Cemeteries in Schuylkill County, PA"
+description: "Directory of cemeteries in Schuylkill County, Pennsylvania. Find cemetery locations, directions, and contact information in the Coal Region."
+---
+
+<div class="container">
+  {% set breadcrumbs = [{label: "Cemeteries"}] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <h1>Cemeteries in Schuylkill County</h1>
+  <p class="page-intro">
+    Schuylkill County is home to historic cemeteries spanning the Coal Region's communities. Find locations and contact information below.
+  </p>
+
+  {% set items = businesses.byCategory["cemeteries"].items %}
+  {% for group in items | by_city %}
+    <div class="city-section">
+      <h2>{{ group.city }}</h2>
+      <div class="card-grid">
+        {% for item in group.items %}
+          {% include "components/listing-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Cemeteries in Schuylkill County, PA",
+  "numberOfItems": {{ items.length }},
+  "itemListElement": [
+    {% for item in items %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "url": "{{ site.url }}{{ item.url }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>

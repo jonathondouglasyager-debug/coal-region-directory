@@ -1,0 +1,27 @@
+---
+pagination:
+  data: businesses.cities
+  size: 1
+  alias: cityData
+permalink: "cities/{{ cityData.slug }}/"
+layout: layouts/base.njk
+eleventyComputed:
+  pageTitle: "Death Care Services in {{ cityData.name }}, PA"
+  description: "Find funeral homes, cemeteries, and cremation services in {{ cityData.name }}, Schuylkill County, PA. Local providers serving {{ cityData.name }} families."
+---
+
+<div class="container">
+  {% set breadcrumbs = [{label: "Cities"}, {label: cityData.name}] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <h1>Death Care Services in {{ cityData.name }}, PA</h1>
+  <p class="page-intro">
+    {{ cityData.items.length }} providers serving families in {{ cityData.name }} and surrounding Schuylkill County communities.
+  </p>
+
+  <div class="card-grid">
+    {% for item in cityData.items %}
+      {% include "components/listing-card.njk" %}
+    {% endfor %}
+  </div>
+</div>

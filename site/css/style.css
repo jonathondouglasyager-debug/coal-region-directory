@@ -1,0 +1,601 @@
+/* Coal Region Directory — Compassionate Community Resource */
+
+:root {
+  --slate: #2C3E50;
+  --slate-light: #34495E;
+  --warm-gray: #7F8C8D;
+  --warm-gray-light: #BDC3C7;
+  --gold: #D4A84B;
+  --gold-light: #E8C97A;
+  --bg: #FAFAF8;
+  --white: #FFFFFF;
+  --text: #2C3E50;
+  --text-light: #5D6D7E;
+  --border: #E8E6E1;
+  --shadow: 0 1px 3px rgba(44, 62, 80, 0.08);
+  --shadow-hover: 0 4px 12px rgba(44, 62, 80, 0.12);
+  --radius: 6px;
+  --max-width: 1100px;
+  --text-width: 720px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--slate);
+}
+
+h1 { font-size: 2rem; margin-bottom: 0.5em; }
+h2 { font-size: 1.5rem; margin-bottom: 0.5em; }
+h3 { font-size: 1.15rem; margin-bottom: 0.4em; }
+
+a {
+  color: var(--slate);
+  text-decoration-color: var(--gold);
+  text-underline-offset: 2px;
+}
+a:hover {
+  color: var(--gold);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Header */
+.site-header {
+  background: var(--slate);
+  color: var(--white);
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.site-logo {
+  color: var(--white);
+  text-decoration: none;
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.site-logo:hover { color: var(--gold-light); }
+
+.site-nav {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: var(--warm-gray-light);
+  text-decoration: none;
+  font-size: 0.875rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius);
+  transition: color 0.15s, background 0.15s;
+}
+.site-nav a:hover {
+  color: var(--white);
+  background: var(--slate-light);
+}
+
+/* Main */
+main {
+  flex: 1;
+  padding: 2rem 0 3rem;
+}
+
+/* Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s;
+}
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.card h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.05rem;
+}
+
+.card h3 a {
+  text-decoration: none;
+}
+.card h3 a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+}
+
+.card-meta {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.card-phone {
+  margin-top: 0.75rem;
+}
+
+.card-phone a {
+  display: inline-block;
+  background: var(--slate);
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.card-phone a:hover {
+  background: var(--gold);
+  color: var(--slate);
+}
+
+.card-links {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.card-links a {
+  color: var(--text-light);
+}
+
+/* Star Rating */
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.stars-display {
+  position: relative;
+  display: inline-block;
+  width: 5em;
+  height: 1em;
+  font-size: 0.9rem;
+  line-height: 1;
+  letter-spacing: 0.15em;
+}
+
+.stars-empty,
+.stars-filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.stars-empty {
+  color: var(--warm-gray-light);
+}
+.stars-filled {
+  color: var(--gold);
+}
+
+.stars-count {
+  color: var(--text-light);
+  font-size: 0.8rem;
+}
+
+/* Category Cards (Homepage) */
+.category-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.category-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--gold);
+  color: var(--text);
+}
+
+.category-card .count {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: Georgia, serif;
+  color: var(--slate);
+  margin-bottom: 0.25rem;
+}
+
+.category-card .label {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* City Section */
+.city-section {
+  margin-top: 2rem;
+}
+.city-section h2 {
+  font-size: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--gold);
+  margin-bottom: 1rem;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+.breadcrumbs a {
+  color: var(--text-light);
+}
+.breadcrumbs span {
+  margin: 0 0.4rem;
+  color: var(--warm-gray-light);
+}
+
+/* Listing Detail */
+.listing-detail {
+  max-width: var(--text-width);
+}
+
+.listing-detail h1 {
+  margin-bottom: 0.25rem;
+}
+
+.listing-category-badge {
+  display: inline-block;
+  background: var(--slate);
+  color: var(--white);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.listing-info {
+  margin: 1.5rem 0;
+}
+
+.listing-info dt {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
+}
+
+.listing-info dd {
+  margin-top: 0.25rem;
+  font-size: 1rem;
+}
+
+.listing-info dd a {
+  word-break: break-all;
+}
+
+.listing-services {
+  margin: 1.5rem 0;
+}
+
+.listing-services ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.listing-services li {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+}
+
+.listing-cta {
+  margin: 2rem 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-primary {
+  background: var(--slate);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background: var(--gold);
+  color: var(--slate);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--slate);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* City Links (Homepage) */
+.city-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.city-links a {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: border-color 0.15s;
+}
+.city-links a:hover {
+  border-color: var(--gold);
+}
+
+/* Page Sections */
+.page-intro {
+  max-width: var(--text-width);
+  margin-bottom: 2rem;
+  color: var(--text-light);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.section {
+  margin-top: 3rem;
+}
+
+.section-header {
+  margin-bottom: 1.5rem;
+}
+
+/* Contact Form */
+.form-section {
+  max-width: var(--text-width);
+  margin: 2rem auto;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--white);
+  transition: border-color 0.15s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 168, 75, 0.15);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-success {
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  padding: 1rem;
+  border-radius: var(--radius);
+  display: none;
+}
+
+/* Guide Content */
+.guide-content {
+  max-width: var(--text-width);
+  line-height: 1.8;
+}
+
+.guide-content h2 {
+  margin-top: 2rem;
+}
+
+.guide-content h3 {
+  margin-top: 1.5rem;
+}
+
+.guide-content p {
+  margin-bottom: 1rem;
+}
+
+.guide-content ul, .guide-content ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.guide-content li {
+  margin-bottom: 0.5rem;
+}
+
+.guide-list {
+  list-style: none;
+}
+
+.guide-list li {
+  margin-bottom: 1rem;
+}
+
+.guide-list a {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.guide-list p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+/* Footer */
+.site-footer {
+  background: var(--slate);
+  color: var(--warm-gray-light);
+  padding: 2.5rem 0 1.5rem;
+  margin-top: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+}
+
+.site-footer h3 {
+  color: var(--white);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.site-footer p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.site-footer ul {
+  list-style: none;
+}
+
+.site-footer li {
+  margin-bottom: 0.35rem;
+}
+
+.site-footer a {
+  color: var(--warm-gray-light);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+.site-footer a:hover {
+  color: var(--gold-light);
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--slate-light);
+  font-size: 0.8rem;
+  color: var(--warm-gray);
+}
+
+/* Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }

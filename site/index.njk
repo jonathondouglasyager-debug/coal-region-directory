@@ -1,0 +1,54 @@
+---
+layout: layouts/base.njk
+pageTitle: "Funeral Homes, Cemeteries & Death Care Services in Schuylkill County"
+description: "Find trusted funeral homes, cemeteries, cremation services, and monument companies in Schuylkill County, PA. A free community directory for Coal Region families."
+---
+
+<div class="container">
+  <h1>Death Care Services in Schuylkill County, PA</h1>
+  <p class="page-intro">
+    Finding the right provider during a difficult time shouldn't be hard. This directory lists every locally-owned funeral home, cemetery, cremation service, and monument company serving families in the Coal Region.
+  </p>
+
+  <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+    {% for cat in businesses.categories %}
+      <a href="/{{ cat.slug }}/" class="category-card">
+        <span class="count">{{ cat.items.length }}</span>
+        <span class="label">{{ cat.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="section">
+    <h2>Browse by City</h2>
+    <div class="city-links">
+      {% for city in businesses.cities %}
+        {% if city.items.length >= 2 %}
+          <a href="/cities/{{ city.slug }}/">{{ city.name }} ({{ city.items.length }})</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Planning Ahead?</h2>
+    <p class="page-intro">
+      Most Schuylkill County funeral homes offer pre-planning services. Making arrangements in advance lifts a tremendous burden from your loved ones during an already difficult time.
+    </p>
+    <div class="city-links">
+      <a href="/guides/pre-planning-funeral-checklist/">Pre-Planning Checklist</a>
+      <a href="/guides/what-to-do-when-someone-dies-in-pa/">What to Do When Someone Dies in PA</a>
+      <a href="/guides/veterans-burial-benefits-pa/">Veterans Burial Benefits</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}",
+  "description": "{{ site.description }}"
+}
+</script>

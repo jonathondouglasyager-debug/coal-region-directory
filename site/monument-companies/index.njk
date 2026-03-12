@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+pageTitle: "Monument Companies in Schuylkill County, PA"
+description: "Find monument companies, headstone dealers, and memorial engravers in Schuylkill County, Pennsylvania."
+---
+
+<div class="container">
+  {% set breadcrumbs = [{label: "Monument Companies"}] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <h1>Monument Companies in Schuylkill County</h1>
+  <p class="page-intro">
+    Local monument companies providing headstones, memorials, and engraving services in the Coal Region.
+  </p>
+
+  {% set items = businesses.byCategory["monument-companies"].items %}
+  {% for group in items | by_city %}
+    <div class="city-section">
+      <h2>{{ group.city }}</h2>
+      <div class="card-grid">
+        {% for item in group.items %}
+          {% include "components/listing-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

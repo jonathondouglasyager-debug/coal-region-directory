@@ -1,0 +1,92 @@
+---
+layout: layouts/base.njk
+---
+
+{% set item = listing %}
+
+<div class="container">
+  {% set breadcrumbs = [
+    {label: item.categoryLabel, url: "/" + item.categorySlug + "/"},
+    {label: item.name}
+  ] %}
+  {% include "components/breadcrumbs.njk" %}
+
+  <div class="listing-detail">
+    <span class="listing-category-badge">{{ item.categoryLabel }}</span>
+    <h1>{{ item.name }}</h1>
+
+    {% if item.google_rating %}
+      <div class="mt-1">
+        {% include "components/star-rating.njk" %}
+      </div>
+    {% endif %}
+
+    <dl class="listing-info">
+      {% if item.address %}
+        <dt>Address</dt>
+        <dd>{{ item.address }}</dd>
+      {% endif %}
+
+      {% if item.phone %}
+        <dt>Phone</dt>
+        <dd><a href="{{ item.phone | phone_link }}">{{ item.phone }}</a></dd>
+      {% endif %}
+
+      {% if item.website %}
+        <dt>Website</dt>
+        <dd><a href="{{ item.website }}" target="_blank" rel="noopener">{{ item.website }}</a></dd>
+      {% endif %}
+    </dl>
+
+    {% if item.services.length %}
+      <div class="listing-services">
+        <h2>Services</h2>
+        <ul>
+          {% for service in item.services %}
+            <li>{{ service }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <div class="listing-cta">
+      {% if item.phone %}
+        <a href="{{ item.phone | phone_link }}" class="btn btn-primary">Call {{ item.phone }}</a>
+      {% endif %}
+      {% if item.google_maps_url %}
+        <a href="{{ item.google_maps_url }}" target="_blank" rel="noopener" class="btn btn-secondary">Get Directions</a>
+      {% endif %}
+      {% if item.website %}
+        <a href="{{ item.website }}" target="_blank" rel="noopener" class="btn btn-secondary">Visit Website</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% include "components/schema-local-business.njk" %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.url }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ item.categoryLabel }}",
+      "item": "{{ site.url }}/{{ item.categorySlug }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ item.name | json_escape }}"
+    }
+  ]
+}
+</script>

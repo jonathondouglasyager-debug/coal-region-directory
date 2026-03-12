@@ -1,0 +1,49 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ site.url }}/</loc>
+    <priority>1.0</priority>
+  </url>
+  {% for cat in businesses.categories %}
+  <url>
+    <loc>{{ site.url }}/{{ cat.slug }}/</loc>
+    <priority>0.8</priority>
+  </url>
+  {% endfor %}
+  {% for item in businesses.all %}
+  <url>
+    <loc>{{ site.url }}{{ item.url }}</loc>
+    <priority>0.6</priority>
+  </url>
+  {% endfor %}
+  {% for city in businesses.cities %}
+  <url>
+    <loc>{{ site.url }}/cities/{{ city.slug }}/</loc>
+    <priority>0.7</priority>
+  </url>
+  {% endfor %}
+  <url>
+    <loc>{{ site.url }}/guides/what-to-do-when-someone-dies-in-pa/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>{{ site.url }}/guides/pre-planning-funeral-checklist/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>{{ site.url }}/guides/veterans-burial-benefits-pa/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>{{ site.url }}/contact/</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>{{ site.url }}/about/</loc>
+    <priority>0.4</priority>
+  </url>
+</urlset>

@@ -1,0 +1,22 @@
+<article class="card">
+  <h3><a href="{{ item.url }}">{{ item.name }}</a></h3>
+  <div class="card-meta">
+    {{ item.city }}, PA {{ item.zip }}
+    {% if item.google_rating %}
+      {% include "components/star-rating.njk" %}
+    {% endif %}
+  </div>
+  {% if item.phone %}
+    <div class="card-phone">
+      <a href="{{ item.phone | phone_link }}">{{ item.phone }}</a>
+    </div>
+  {% endif %}
+  <div class="card-links">
+    {% if item.website %}
+      <a href="{{ item.website }}" target="_blank" rel="noopener">Website</a>
+    {% endif %}
+    {% if item.google_maps_url %}
+      <a href="{{ item.google_maps_url }}" target="_blank" rel="noopener">Directions</a>
+    {% endif %}
+  </div>
+</article>
