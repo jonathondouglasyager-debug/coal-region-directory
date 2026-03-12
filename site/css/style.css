@@ -116,6 +116,7 @@ a:hover {
 main {
   flex: 1;
   padding: 2rem 0 3rem;
+  margin-top: 3rem;
 }
 
 /* Cards */
