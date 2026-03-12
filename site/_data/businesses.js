@@ -54,6 +54,10 @@ const EXCLUDE_NAMES = [
 module.exports = function() {
   const dataDir = path.join(__dirname, "../../data");
 
+  // Read premium config
+  const premiumConfig = JSON.parse(fs.readFileSync(path.join(__dirname, "premium.json"), "utf8"));
+  const premiumSlugs = new Set(premiumConfig.businesses);
+
   // Read main business data
   const mainCsv = fs.readFileSync(path.join(dataDir, "schuylkill-businesses-cleaned.csv"), "utf8");
   const mainRecords = parse(mainCsv, { columns: true, skip_empty_lines: true, trim: true });
@@ -123,11 +127,19 @@ module.exports = function() {
         has_online_forms: preneed.has_online_forms === "Yes",
         preneed_maturity: preneed.preneed_maturity || null,
 
+        // Premium status
+        premium: premiumSlugs.has(slugify(b.name)),
+
         // For listings
         services: buildServices(b, preneed)
       };
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort((a, b) => {
+      // Premium listings first, then alphabetical
+      if (a.premium && !b.premium) return -1;
+      if (!a.premium && b.premium) return 1;
+      return a.name.localeCompare(b.name);
+    });
 
   // Group by category
   const byCategory = {};

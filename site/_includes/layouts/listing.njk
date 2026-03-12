@@ -11,8 +11,13 @@ layout: layouts/base.njk
   ] %}
   {% include "components/breadcrumbs.njk" %}
 
-  <div class="listing-detail">
-    <span class="listing-category-badge">{{ item.categoryLabel }}</span>
+  <div class="listing-detail{% if item.premium %} listing-premium{% endif %}">
+    <div class="listing-badges">
+      <span class="listing-category-badge">{{ item.categoryLabel }}</span>
+      {% if item.premium %}
+        <span class="listing-featured-badge">Featured</span>
+      {% endif %}
+    </div>
     <h1>{{ item.name }}</h1>
 
     {% if item.google_rating %}
